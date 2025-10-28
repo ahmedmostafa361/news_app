@@ -6,10 +6,12 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     primaryColor: AppColors.blackColor,
     splashColor: AppColors.blackColor,
+    cardColor: AppColors.whiteColor,
     textTheme: TextTheme(
-      bodyLarge: AppTextStyle.normal14Black,
+      bodyLarge: AppTextStyle.bold16Black,
       labelMedium: AppTextStyle.normal14Black,
       labelLarge: AppTextStyle.normal16black,
+      headlineMedium: AppTextStyle.normal20black,
     ),
     scaffoldBackgroundColor: AppColors.whiteColor,
     appBarTheme: AppBarTheme(
@@ -21,10 +23,12 @@ class AppTheme {
   static ThemeData darkTheme = ThemeData(
     primaryColor: AppColors.whiteColor,
     splashColor: AppColors.whiteColor,
+    cardColor: AppColors.blackColor,
     textTheme: TextTheme(
-      bodyLarge: AppTextStyle.normal16White,
+      bodyLarge: AppTextStyle.bold16White,
       labelMedium: AppTextStyle.normal14White,
       labelLarge: AppTextStyle.normal16White,
+      headlineMedium: AppTextStyle.normal20White,
     ),
     scaffoldBackgroundColor: AppColors.blackColor,
     appBarTheme: AppBarTheme(
