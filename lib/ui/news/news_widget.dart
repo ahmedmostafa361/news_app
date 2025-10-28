@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_flutter/api/api_manager.dart';
 import 'package:news_app_flutter/model/newsResponse.dart';
+import 'package:news_app_flutter/ui/news/news_items_container.dart';
 
 import '../../model/sourceResponse.dart';
 import '../../utlis/app_colors.dart';
 import '../../utlis/app_text_style.dart';
 
 class NewsWidget extends StatelessWidget {
-  NewsWidget({super.key, required this.source});
+  const NewsWidget({super.key, required this.source});
 
-  Sources source;
+  final Sources source;
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery
+        .of(context)
+        .size
+        .height;
+
     return FutureBuilder<NewsResponse>(
       future: ApiManager.getNews(source.id!),
       builder: (context, snapshot) {
@@ -61,9 +67,15 @@ class NewsWidget extends StatelessWidget {
 
         /// todo: success
         var newsList = snapshot.data?.articles ?? [];
-        return ListView.builder(
+        return ListView.separated(
+          padding: EdgeInsets.only(
+              top: height * 0.02
+          ),
+          separatorBuilder: (context, index) {
+            return SizedBox(height: height * 0.02,);
+          },
           itemBuilder: (context, index) {
-            return Text(newsList[index].title!);
+            return NewsItemsContainer(news: newsList[index],);
           },
           itemCount: newsList.length,
         );

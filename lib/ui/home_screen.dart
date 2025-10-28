@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'category_details/category_screen.dart';
+import 'package:news_app_flutter/ui/category_fragment/category_fragment.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,7 +8,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Home'), centerTitle: true),
-      body: CategoryScreen(),
+      body: CategoryFragment(),
     );
   }
 }

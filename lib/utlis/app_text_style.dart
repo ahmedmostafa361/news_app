@@ -128,6 +128,11 @@ class AppTextStyle {
     fontSize: 12,
     fontWeight: FontWeight.bold,
   );
+  static final TextStyle normal12Grey = GoogleFonts.inter(
+    color: AppColors.greyColor,
+    fontSize: 12,
+    fontWeight: FontWeight.normal,
+  );
   static final TextStyle bold32White = GoogleFonts.inter(
     color: AppColors.whiteColor,
     fontSize: 32,
