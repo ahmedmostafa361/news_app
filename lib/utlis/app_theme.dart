@@ -7,6 +7,7 @@ class AppTheme {
     primaryColor: AppColors.blackColor,
     splashColor: AppColors.blackColor,
     textTheme: TextTheme(
+      bodyLarge: AppTextStyle.normal14Black,
       labelMedium: AppTextStyle.normal14Black,
       labelLarge: AppTextStyle.normal16black,
     ),
@@ -21,6 +22,7 @@ class AppTheme {
     primaryColor: AppColors.whiteColor,
     splashColor: AppColors.whiteColor,
     textTheme: TextTheme(
+      bodyLarge: AppTextStyle.normal16White,
       labelMedium: AppTextStyle.normal14White,
       labelLarge: AppTextStyle.normal16White,
     ),
