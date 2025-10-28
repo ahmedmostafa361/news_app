@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_flutter/ui/category_details/widget/source_name_in_tab.dart';
+import 'package:news_app_flutter/ui/news/news_widget.dart';
 import 'package:news_app_flutter/utlis/app_colors.dart';
 
 import '../../../model/sourceResponse.dart';
@@ -20,30 +21,37 @@ class _SourceTabWidgetState extends State<SourceTabWidget> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: widget.sourcesList.length,
-      child: TabBar(
-        tabAlignment: TabAlignment.start,
-        isScrollable: true,
-        dividerColor: AppColors.transparentColor,
-        indicatorColor: Theme.of(context).splashColor,
-        onTap: (index) {
-          selectedIndex = index;
-          setState(() {});
-        },
-        tabs: widget.sourcesList.map((source) {
-          return SourceNameInTab(
-            source: source,
-            isSelected: selectedIndex == widget.sourcesList.indexOf(source),
-          );
-        }).toList(),
+      child: Column(
+        children: [
+          TabBar(
+            tabAlignment: TabAlignment.start,
+            isScrollable: true,
+            dividerColor: AppColors.transparentColor,
+            indicatorColor: Theme
+                .of(context)
+                .splashColor,
+            onTap: (index) {
+              selectedIndex = index;
+              setState(() {});
+            },
+            tabs: widget.sourcesList.map((source) {
+              return SourceNameInTab(
+                source: source,
+                isSelected: selectedIndex == widget.sourcesList.indexOf(source),
+              );
+            }).toList(),
 
-        /// we can use also list generate instead of map == List
-        /// List.generate(sourcesList.length, (index) {
-        //   final source = sourcesList[index];
-        //   return SourceName(
-        //     source: source,
-        //     isSelected: selectedIndex == index,
-        //   );
-        // }),
+            /// we can use also list generate instead of map == List
+            /// List.generate(sourcesList.length, (index) {
+            //   final source = sourcesList[index];
+            //   return SourceName(
+            //     source: source,
+            //     isSelected: selectedIndex == index,
+            //   );
+            // }),
+          ),
+          Expanded(child: NewsWidget(source: widget.sourcesList[selectedIndex]))
+        ],
       ),
     );
   }

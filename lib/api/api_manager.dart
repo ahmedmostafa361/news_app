@@ -2,13 +2,14 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:news_app_flutter/api/api_constants.dart';
+import 'package:news_app_flutter/model/newsResponse.dart';
 import 'package:news_app_flutter/model/sourceResponse.dart';
 
 class ApiManager {
   ///https://newsapi.org/v2/top-headlines/sources?apiKey=8ba0843ad1af49ae93ea0845d5e5da7c
   static Future<SourceResponse> getSources() async {
     ///Uri => uniform resource identifier
-    Uri url = Uri.http(ApiConstants.serverName, ApiConstants.apiName, {
+    Uri url = Uri.https(ApiConstants.serverName, ApiConstants.apiName, {
       'apiKey': ApiConstants.apiKey,
     });
     try {
@@ -23,6 +24,26 @@ class ApiManager {
       return SourceResponse.fromJson(json);
 
       /// === object of sourceResponse
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// https://newsapi.org/v2/everything?q=bitcoin&apiKey=8ba0843ad1af49ae93ea0845d5e5da7c
+  static Future<NewsResponse> getNews(String sourceId) async {
+    Uri url = Uri.https(
+        ApiConstants.serverName,
+        ApiConstants.newsApiName,
+        {
+          'apiKey': ApiConstants.apiKey,
+          'sources': sourceId
+        }
+    );
+    try {
+      var response = await http.get(url);
+      var responseBody = response.body;
+      var json = jsonDecode(responseBody);
+      return NewsResponse.fromJson(json);
     } catch (e) {
       rethrow;
     }
