@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_flutter/api/api_manager.dart';
+import 'package:news_app_flutter/model/category.dart';
 import 'package:news_app_flutter/ui/category_details/widget/source_tab_widget.dart';
 import 'package:news_app_flutter/utlis/app_colors.dart';
 import 'package:news_app_flutter/utlis/app_text_style.dart';
 
 class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({super.key});
+  const CategoryScreen({super.key, required this.categoryId});
 
+  final Categoory categoryId;
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ApiManager.getSources(),
+      future: ApiManager.getSources(categoryId: categoryId.id),
       builder: (context, snapshot) {
         ///todo: waiting
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -27,7 +29,7 @@ class CategoryScreen extends StatelessWidget {
               Text('Something went wrong'),
               ElevatedButton(
                 onPressed: () {
-                  ApiManager.getSources();
+                  ApiManager.getSources(categoryId: categoryId.id);
                 },
                 child: Text('try again', style: AppTextStyle.bold16Red),
                 style: ElevatedButton.styleFrom(
@@ -44,7 +46,7 @@ class CategoryScreen extends StatelessWidget {
               Text(snapshot.data!.message!),
               ElevatedButton(
                 onPressed: () {
-                  ApiManager.getSources();
+                  ApiManager.getSources(categoryId: categoryId.id);
                 },
                 child: Text('try again', style: AppTextStyle.bold16Red),
                 style: ElevatedButton.styleFrom(
@@ -57,7 +59,7 @@ class CategoryScreen extends StatelessWidget {
 
         /// todo: success
         var sourcesList = snapshot.data?.sources ?? [];
-        return SourceTabWidget(sourcesList: sourcesList);
+        return SourceTabWidget(sourcesList: sourcesList, category: categoryId,);
       },
     );
   }
