@@ -6,7 +6,8 @@ import 'package:news_app_flutter/utlis/app_routes.dart';
 import 'package:news_app_flutter/utlis/app_theme.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(
       providers: [

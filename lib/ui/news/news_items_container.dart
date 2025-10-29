@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app_flutter/model/newsResponse.dart';
 import 'package:news_app_flutter/utlis/app_text_style.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 class NewsItemsContainer extends StatelessWidget {
   const NewsItemsContainer({super.key, required this.news});
@@ -13,14 +12,26 @@ class NewsItemsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    final DateTime? published = DateTime.tryParse(
-      news.publishedAt ?? '',
-    )?.toLocal();
-    String timeAgoText = '';
-    if (published != null) {
-      timeAgoText = timeago.format(published);
-    }
+    print(news.publishedAt);
+    String getTimeAgo(String publishedAt) {
+      DateTime utcTime = DateTime.parse(publishedAt);
+      DateTime egyptTime = utcTime.add(const Duration(hours: 2)); // UTC → Egypt
 
+      Duration diff = DateTime.now().difference(egyptTime);
+
+      if (diff.inMinutes < 1) {
+        return "just now";
+      } else if (diff.inMinutes < 60) {
+        return "${diff.inMinutes} minutes ago";
+      } else if (diff.inHours < 24) {
+        return "${diff.inHours} hour${diff.inHours > 1 ? 's' : ''} ago";
+      } else if (diff.inDays == 1) {
+        return "yesterday";
+      } else {
+        // show date if older than 1 day
+        return "${egyptTime.day}/${egyptTime.month}/${egyptTime.year}";
+      }
+    }
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: width * 0.01,
@@ -56,7 +67,11 @@ class NewsItemsContainer extends StatelessWidget {
                 ),
               ),
               SizedBox(width: width * 0.02),
-              Text(timeAgoText, style: AppTextStyle.normal12Grey),
+              Text(
+
+                /// a real minutes ago
+                  getTimeAgo(news.publishedAt!),
+                  style: AppTextStyle.normal12Grey),
             ],
           ),
         ],

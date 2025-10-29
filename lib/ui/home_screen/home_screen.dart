@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ), centerTitle: true),
       drawer: Drawer(
         backgroundColor: AppColors.blackColor,
+
         child: DrawerItem(onClickHome: onClickHome,),
       ),
       body: selectedCategory == null ? CategoryFragment(
