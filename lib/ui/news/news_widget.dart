@@ -3,6 +3,7 @@ import 'package:news_app_flutter/api/api_manager.dart';
 import 'package:news_app_flutter/model/category.dart';
 import 'package:news_app_flutter/model/newsResponse.dart';
 import 'package:news_app_flutter/ui/news/news_items_container.dart';
+import 'package:news_app_flutter/ui/news/widget/bottom_sheet_widget.dart';
 
 import '../../model/sourceResponse.dart';
 import '../../utlis/app_colors.dart';
@@ -77,7 +78,19 @@ class NewsWidget extends StatelessWidget {
             return SizedBox(height: height * 0.02,);
           },
           itemBuilder: (context, index) {
-            return GestureDetector(
+            return GestureDetector(onTap: () {
+              showModalBottomSheet(
+                backgroundColor: Theme
+                    .of(context)
+                    .splashColor,
+                context: context,
+                builder: (context) {
+                  return SingleChildScrollView(
+                    child: BottomSheetWidget(news: newsList[index]),
+                  );
+                },
+              );
+            },
                 child: NewsItemsContainer(news: newsList[index],
                 )
             );
