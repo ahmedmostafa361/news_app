@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_flutter/api/api_manager.dart';
+import 'package:news_app_flutter/model/category.dart';
 import 'package:news_app_flutter/model/newsResponse.dart';
 import 'package:news_app_flutter/ui/news/news_items_container.dart';
 
@@ -8,8 +9,9 @@ import '../../utlis/app_colors.dart';
 import '../../utlis/app_text_style.dart';
 
 class NewsWidget extends StatelessWidget {
-  const NewsWidget({super.key, required this.source});
+  const NewsWidget({super.key, required this.source, required this.category});
 
+  final Categoory category;
   final Sources source;
 
   @override
@@ -37,7 +39,7 @@ class NewsWidget extends StatelessWidget {
               Text('Something went wrong'),
               ElevatedButton(
                 onPressed: () {
-                  ApiManager.getSources();
+                  ApiManager.getSources(categoryId: category.id);
                 },
                 child: Text('try again', style: AppTextStyle.bold16Red),
                 style: ElevatedButton.styleFrom(
@@ -54,7 +56,7 @@ class NewsWidget extends StatelessWidget {
               Text(snapshot.data!.message!),
               ElevatedButton(
                 onPressed: () {
-                  ApiManager.getSources();
+                  ApiManager.getSources(categoryId: category.id);
                 },
                 child: Text('try again', style: AppTextStyle.bold16Red),
                 style: ElevatedButton.styleFrom(
@@ -75,7 +77,10 @@ class NewsWidget extends StatelessWidget {
             return SizedBox(height: height * 0.02,);
           },
           itemBuilder: (context, index) {
-            return NewsItemsContainer(news: newsList[index],);
+            return GestureDetector(
+                child: NewsItemsContainer(news: newsList[index],
+                )
+            );
           },
           itemCount: newsList.length,
         );

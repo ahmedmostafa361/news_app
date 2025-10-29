@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_flutter/model/category.dart';
 import 'package:news_app_flutter/ui/category_details/widget/source_name_in_tab.dart';
 import 'package:news_app_flutter/ui/news/news_widget.dart';
 import 'package:news_app_flutter/utlis/app_colors.dart';
@@ -6,10 +7,11 @@ import 'package:news_app_flutter/utlis/app_colors.dart';
 import '../../../model/sourceResponse.dart';
 
 class SourceTabWidget extends StatefulWidget {
-  const SourceTabWidget({super.key, required this.sourcesList});
+  const SourceTabWidget(
+      {super.key, required this.sourcesList, required this.category});
 
   final List<Sources> sourcesList;
-
+  final Categoory category;
   @override
   State<SourceTabWidget> createState() => _SourceTabWidgetState();
 }
@@ -50,7 +52,8 @@ class _SourceTabWidgetState extends State<SourceTabWidget> {
             //   );
             // }),
           ),
-          Expanded(child: NewsWidget(source: widget.sourcesList[selectedIndex]))
+          Expanded(child: NewsWidget(source: widget.sourcesList[selectedIndex],
+            category: widget.category,))
         ],
       ),
     );

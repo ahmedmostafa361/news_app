@@ -3,8 +3,12 @@ import 'package:news_app_flutter/model/category.dart';
 import 'package:news_app_flutter/ui/category_fragment/category_item.dart';
 import 'package:news_app_flutter/utlis/app_assets.dart';
 
+typedef OnCategoryClick = void Function(Categoory);
+
 class CategoryFragment extends StatelessWidget {
-  CategoryFragment({super.key});
+  final OnCategoryClick onCategoryClick;
+
+  CategoryFragment({super.key, required this.onCategoryClick});
 
   ///business entertainment general health science sports technology
   final List<Categoory> categoryList = [
@@ -39,9 +43,14 @@ class CategoryFragment extends StatelessWidget {
           Expanded(
             child: ListView.separated(
               itemBuilder: (context, index) {
-                return CategoryItem(
-                  category: categoryList[index],
-                  index: index,
+                return InkWell(
+                  onTap: () {
+                    onCategoryClick(categoryList[index]);
+                  },
+                  child: CategoryItem(
+                    category: categoryList[index],
+                    index: index,
+                  ),
                 );
               },
               separatorBuilder: (context, index) {
