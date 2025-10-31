@@ -29,4 +29,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dark => 'Dark';
+
+  @override
+  String get viewAll => 'View All';
+
+  @override
+  String get goodMorning => 'Good Morning \nHere is Some News For You';
+
+  @override
+  String get newsApp => 'News App';
+
+  @override
+  String get goToHome => 'Go to home';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get business => 'Business';
+
+  @override
+  String get sports => 'Sports';
+
+  @override
+  String get general => 'General';
+
+  @override
+  String get science => 'Science';
+
+  @override
+  String get health => 'Health';
+
+  @override
+  String get technology => 'Technology';
+
+  @override
+  String get entertainment => 'Entertainment';
 }

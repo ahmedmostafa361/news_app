@@ -7,10 +7,12 @@ import 'package:news_app_flutter/utlis/app_text_style.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen(
-      {super.key, required this.categoryId, required this.searchQuery});
+      {super.key, required this.categoryId, required this.searchQuery, required this.language});
 
   final Categoory categoryId;
   final String searchQuery;
+
+  final String language;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,8 @@ class CategoryScreen extends StatelessWidget {
         return SourceTabWidget(
           sourcesList: sourcesList,
           category: categoryId,
-          searchQuery: searchQuery,);
+          searchQuery: searchQuery,
+          language: language,);
       },
     );
   }
