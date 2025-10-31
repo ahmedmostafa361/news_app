@@ -8,10 +8,11 @@ import '../../../model/sourceResponse.dart';
 
 class SourceTabWidget extends StatefulWidget {
   const SourceTabWidget(
-      {super.key, required this.sourcesList, required this.category});
+      {super.key, required this.sourcesList, required this.category, required this.searchQuery});
 
   final List<Sources> sourcesList;
   final Categoory category;
+  final String searchQuery;
   @override
   State<SourceTabWidget> createState() => _SourceTabWidgetState();
 }
@@ -53,7 +54,8 @@ class _SourceTabWidgetState extends State<SourceTabWidget> {
             // }),
           ),
           Expanded(child: NewsWidget(source: widget.sourcesList[selectedIndex],
-            category: widget.category,))
+            category: widget.category,
+            searchQuery: widget.searchQuery,))
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_flutter/provider/app_language_provider.dart';
 import 'package:news_app_flutter/provider/app_theme_provider.dart';
 import 'package:news_app_flutter/ui/home_screen/widget/IconTextWidget.dart';
 import 'package:news_app_flutter/ui/home_screen/widget/custom_drop_down.dart';
@@ -7,16 +8,24 @@ import 'package:news_app_flutter/utlis/app_colors.dart';
 import 'package:news_app_flutter/utlis/app_text_style.dart';
 import 'package:provider/provider.dart';
 
-class DrawerItem extends StatelessWidget {
+import '../../l10n/app_localizations.dart';
+
+class DrawerItem extends StatefulWidget {
   final VoidCallback onClickHome;
 
   const DrawerItem({super.key, required this.onClickHome});
 
   @override
+  State<DrawerItem> createState() => _DrawerItemState();
+}
+
+class _DrawerItemState extends State<DrawerItem> {
+  @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     var themeProvider = Provider.of<AppThemeProvider>(context);
+    var languageProvider = Provider.of<AppLanguageProviders>(context);
 
     return Column(
       children: [
@@ -30,7 +39,7 @@ class DrawerItem extends StatelessWidget {
         ),
         SizedBox(height: height * 0.02),
         GestureDetector(
-          onTap: () => onClickHome(),
+          onTap: () => widget.onClickHome(),
           child: IconTextWidget(
             text: 'Go to home',
             widget: Image.asset(AppAssets.homeIcon),
@@ -46,11 +55,17 @@ class DrawerItem extends StatelessWidget {
         IconTextWidget(text: 'Theme', widget: Image.asset(AppAssets.themeIcon)),
         SizedBox(height: height * 0.02),
         CustomDropdown<ThemeMode>(
-          key: const ValueKey("theme_dropdown"),
+          key: ValueKey(AppLocalizations.of(context)!.localeName),
           initialValue: themeProvider.appTheme,
           entries: [
-            DropdownMenuEntry(value: ThemeMode.light, label: 'light'),
-            DropdownMenuEntry(value: ThemeMode.dark, label: 'dark'),
+            DropdownMenuEntry(
+              value: ThemeMode.light,
+              label: AppLocalizations.of(context)!.light,
+            ),
+            DropdownMenuEntry(
+              value: ThemeMode.dark,
+              label: AppLocalizations.of(context)!.dark,
+            ),
           ],
           onSelected: (value) {
             if (value != null) themeProvider.changeTheme(value);
@@ -68,15 +83,20 @@ class DrawerItem extends StatelessWidget {
           widget: Image.asset(AppAssets.earthIcon),
         ),
         SizedBox(height: height * 0.02),
-        CustomDropdown<ThemeMode>(
-          key: const ValueKey("theme_dropdown2"),
-          initialValue: themeProvider.appTheme,
+        CustomDropdown<String>(
+          initialValue: languageProvider.appLanguage,
           entries: [
-            DropdownMenuEntry(value: ThemeMode.light, label: 'English'),
-            DropdownMenuEntry(value: ThemeMode.dark, label: 'Arabic'),
+            DropdownMenuEntry(
+              value: 'en',
+              label: AppLocalizations.of(context)!.english,
+            ),
+            DropdownMenuEntry(
+              value: 'ar',
+              label: AppLocalizations.of(context)!.arabic,
+            ),
           ],
           onSelected: (value) {
-            if (value != null) themeProvider.changeTheme(value);
+            if (value != null) languageProvider.changeLanguage(value);
           },
         ),
       ],

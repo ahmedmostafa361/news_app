@@ -10,10 +10,16 @@ import '../../utlis/app_colors.dart';
 import '../../utlis/app_text_style.dart';
 
 class NewsWidget extends StatelessWidget {
-  const NewsWidget({super.key, required this.source, required this.category});
+  NewsWidget({
+    super.key,
+    required this.source,
+    required this.category,
+    required this.searchQuery,
+  });
 
   final Categoory category;
   final Sources source;
+  final String searchQuery;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class NewsWidget extends StatelessWidget {
         .height;
 
     return FutureBuilder<NewsResponse>(
-      future: ApiManager.getNews(source.id!),
+      future: ApiManager.getNews(source.id!, searchQuery),
       builder: (context, snapshot) {
         ///todo: waiting
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -54,7 +60,7 @@ class NewsWidget extends StatelessWidget {
         else if (snapshot.data?.status != 'ok') {
           return Column(
             children: [
-              Text(snapshot.data!.message!),
+              Text(snapshot.data?.message ?? 'Error'),
               ElevatedButton(
                 onPressed: () {
                   ApiManager.getSources(categoryId: category.id);
@@ -72,27 +78,29 @@ class NewsWidget extends StatelessWidget {
         var newsList = snapshot.data?.articles ?? [];
         return ListView.separated(
           padding: EdgeInsets.only(
-              top: height * 0.02
+            top: height * 0.02,
           ),
           separatorBuilder: (context, index) {
-            return SizedBox(height: height * 0.02,);
+            return SizedBox(height: height * 0.02);
           },
           itemBuilder: (context, index) {
-            return GestureDetector(onTap: () {
-              showModalBottomSheet(
-                backgroundColor: Theme
-                    .of(context)
-                    .splashColor,
-                context: context,
-                builder: (context) {
-                  return SingleChildScrollView(
-                    child: BottomSheetWidget(news: newsList[index]),
-                  );
-                },
-              );
-            },
-                child: NewsItemsContainer(news: newsList[index],
-                )
+            return GestureDetector(
+              onTap: () {
+                showModalBottomSheet(
+                  backgroundColor: Theme
+                      .of(context)
+                      .splashColor,
+                  context: context,
+                  builder: (context) {
+                    return SingleChildScrollView(
+                      child: BottomSheetWidget(news: newsList[index]),
+                    );
+                  },
+                );
+              },
+              child: NewsItemsContainer(
+                news: newsList[index],
+              ),
             );
           },
           itemCount: newsList.length,

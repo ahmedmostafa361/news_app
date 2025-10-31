@@ -6,9 +6,12 @@ import 'package:news_app_flutter/utlis/app_colors.dart';
 import 'package:news_app_flutter/utlis/app_text_style.dart';
 
 class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({super.key, required this.categoryId});
+  const CategoryScreen(
+      {super.key, required this.categoryId, required this.searchQuery});
 
   final Categoory categoryId;
+  final String searchQuery;
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -59,7 +62,10 @@ class CategoryScreen extends StatelessWidget {
 
         /// todo: success
         var sourcesList = snapshot.data?.sources ?? [];
-        return SourceTabWidget(sourcesList: sourcesList, category: categoryId,);
+        return SourceTabWidget(
+          sourcesList: sourcesList,
+          category: categoryId,
+          searchQuery: searchQuery,);
       },
     );
   }

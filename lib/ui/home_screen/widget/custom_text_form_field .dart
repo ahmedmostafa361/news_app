@@ -17,7 +17,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool obscureText;
   final TextInputType keyboardType;
   final int? maxLines;
-
+  final void Function(String)? onChanged;
   const CustomTextFormField({
     super.key,
     this.controller,
@@ -33,11 +33,13 @@ class CustomTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.obscuringCharacter = '.',
+    this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onChanged,
       style: Theme.of(context).textTheme.headlineMedium,
       maxLines: maxLines ?? 1,
       controller: controller,
@@ -48,7 +50,11 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         // border: outlineInputBorder(BorderSideColor: BorderSideColor),
         // enabledBorder: outlineInputBorder(BorderSideColor: BorderSideColor),
-        // focusedBorder: outlineInputBorder(BorderSideColor: BorderSideColor),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Theme
+              .of(context)
+              .primaryColor, width: 2),
+        ),
         errorBorder: outlineInputBorder(BorderSideColor: AppColors.redColor),
         focusedErrorBorder: outlineInputBorder(
           BorderSideColor: AppColors.redColor,
