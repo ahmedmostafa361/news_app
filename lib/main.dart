@@ -6,6 +6,8 @@ import 'package:news_app_flutter/utlis/app_routes.dart';
 import 'package:news_app_flutter/utlis/app_theme.dart';
 import 'package:provider/provider.dart';
 
+import 'l10n/app_localizations.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
@@ -34,6 +36,8 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       locale: Locale(languageProvider.appLanguage),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
     );
   }
 }

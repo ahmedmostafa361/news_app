@@ -8,6 +8,7 @@ class AppTheme {
     splashColor: AppColors.blackColor,
     cardColor: AppColors.whiteColor,
     textTheme: TextTheme(
+      titleMedium: AppTextStyle.normal20White,
       bodyLarge: AppTextStyle.bold16Black,
       labelMedium: AppTextStyle.normal14Black,
       labelLarge: AppTextStyle.normal16black,
@@ -25,6 +26,7 @@ class AppTheme {
     splashColor: AppColors.whiteColor,
     cardColor: AppColors.blackColor,
     textTheme: TextTheme(
+      titleMedium: AppTextStyle.normal20black,
       bodyLarge: AppTextStyle.bold16White,
       labelMedium: AppTextStyle.normal14White,
       labelLarge: AppTextStyle.normal16White,
