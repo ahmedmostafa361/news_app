@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_flutter/l10n/app_localizations.dart';
 import 'package:news_app_flutter/model/category.dart';
+import 'package:news_app_flutter/provider/app_language_provider.dart';
 import 'package:news_app_flutter/ui/category_details/category_screen.dart';
 import 'package:news_app_flutter/ui/category_fragment/category_fragment.dart';
 import 'package:news_app_flutter/ui/home_screen/drawer_item.dart';
 import 'package:news_app_flutter/ui/home_screen/widget/custom_text_form_field .dart';
 import 'package:news_app_flutter/utlis/app_colors.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,9 +21,9 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isSearching = false;
 
   Categoory? selectedCategory;
-
   @override
   Widget build(BuildContext context) {
+    var appLanguage = Provider.of<AppLanguageProviders>(context);
     return Scaffold(
       appBar: AppBar(
         title: isSearching
@@ -37,8 +40,11 @@ class _HomeScreenState extends State<HomeScreen> {
               .of(context)
               .primaryColor,
         )
-            : Text(selectedCategory == null ? 'Home' : selectedCategory!.title),
-        centerTitle: true,
+            : Text(
+          selectedCategory == null
+              ? AppLocalizations.of(context)!.home
+              : selectedCategory!.title,
+        ), centerTitle: true,
         actions: [
           selectedCategory != null
               ? IconButton(
@@ -67,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
           : CategoryScreen(
         categoryId: selectedCategory!,
         searchQuery: textSearchController.text,
+        language: appLanguage.appLanguage,
       ),
     );
   }

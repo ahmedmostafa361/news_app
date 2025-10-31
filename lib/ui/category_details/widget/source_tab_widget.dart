@@ -8,11 +8,13 @@ import '../../../model/sourceResponse.dart';
 
 class SourceTabWidget extends StatefulWidget {
   const SourceTabWidget(
-      {super.key, required this.sourcesList, required this.category, required this.searchQuery});
+      {super.key, required this.sourcesList, required this.category, required this.searchQuery, required this.language});
 
   final List<Sources> sourcesList;
   final Categoory category;
   final String searchQuery;
+  final String language;
+
   @override
   State<SourceTabWidget> createState() => _SourceTabWidgetState();
 }
@@ -44,7 +46,7 @@ class _SourceTabWidgetState extends State<SourceTabWidget> {
               );
             }).toList(),
 
-            /// we can use also list generate instead of map == List
+            /// todo: we can use also list generate instead of map == List
             /// List.generate(sourcesList.length, (index) {
             //   final source = sourcesList[index];
             //   return SourceName(
@@ -55,7 +57,8 @@ class _SourceTabWidgetState extends State<SourceTabWidget> {
           ),
           Expanded(child: NewsWidget(source: widget.sourcesList[selectedIndex],
             category: widget.category,
-            searchQuery: widget.searchQuery,))
+            searchQuery: widget.searchQuery,
+            language: widget.language,))
         ],
       ),
     );

@@ -10,16 +10,18 @@ import '../../utlis/app_colors.dart';
 import '../../utlis/app_text_style.dart';
 
 class NewsWidget extends StatelessWidget {
-  NewsWidget({
+  const NewsWidget({
     super.key,
     required this.source,
     required this.category,
     required this.searchQuery,
+    required this.language
   });
 
   final Categoory category;
   final Sources source;
   final String searchQuery;
+  final String language;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class NewsWidget extends StatelessWidget {
         .height;
 
     return FutureBuilder<NewsResponse>(
-      future: ApiManager.getNews(source.id!, searchQuery),
+      future: ApiManager.getNews(source.id!, searchQuery, language),
       builder: (context, snapshot) {
         ///todo: waiting
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -48,10 +50,10 @@ class NewsWidget extends StatelessWidget {
                 onPressed: () {
                   ApiManager.getSources(categoryId: category.id);
                 },
-                child: Text('try again', style: AppTextStyle.bold16Red),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.darkBlueColor,
                 ),
+                child: Text('try again', style: AppTextStyle.bold16Red),
               ),
             ],
           );
@@ -65,10 +67,10 @@ class NewsWidget extends StatelessWidget {
                 onPressed: () {
                   ApiManager.getSources(categoryId: category.id);
                 },
-                child: Text('try again', style: AppTextStyle.bold16Red),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.darkBlueColor,
                 ),
+                child: Text('try again', style: AppTextStyle.bold16Red),
               ),
             ],
           );

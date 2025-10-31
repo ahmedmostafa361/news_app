@@ -5,5 +5,17 @@
   "arabic": "Arabic",
   "english": "English",
   "light": "Light",
-  "dark": "Dark"
+  "dark": "Dark",
+  "viewAll": "View All",
+  "goodMorning": "Good Morning \nHere is Some News For You",
+  "newsApp": "News App",
+  "goToHome": "Go to home",
+  "home": "Home",
+  "business": "Business",
+  "sports": "Sports",
+  "general": "General",
+  "science": "Science",
+  "health": "Health",
+  "technology": "Technology",
+  "entertainment": "Entertainment"
 }

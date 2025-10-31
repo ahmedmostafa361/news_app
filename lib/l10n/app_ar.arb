@@ -5,5 +5,17 @@
   "arabic": "العربية",
   "english": "الانجليزية",
   "light": "مضئ",
-  "dark": "مظلم"
+  "dark": "مظلم",
+  "viewAll": "عرض الكل",
+  "goodMorning": "صباح الخير\nاليك بعض الأخبار لك",
+  "newsApp": "تطبيق الأخبار",
+  "goToHome": "العودة للرئيسية",
+  "home": "الرئيسية",
+  "business": "أعمال",
+  "sports": "رياضة",
+  "general": "عام",
+  "science": "علوم",
+  "health": "صحة",
+  "technology": "تكنولوجيا",
+  "entertainment": "ترفيه"
 }

@@ -29,4 +29,40 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dark => 'مظلم';
+
+  @override
+  String get viewAll => 'عرض الكل';
+
+  @override
+  String get goodMorning => 'صباح الخير\nاليك بعض الأخبار لك';
+
+  @override
+  String get newsApp => 'تطبيق الأخبار';
+
+  @override
+  String get goToHome => 'العودة للرئيسية';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get business => 'أعمال';
+
+  @override
+  String get sports => 'رياضة';
+
+  @override
+  String get general => 'عام';
+
+  @override
+  String get science => 'علوم';
+
+  @override
+  String get health => 'صحة';
+
+  @override
+  String get technology => 'تكنولوجيا';
+
+  @override
+  String get entertainment => 'ترفيه';
 }

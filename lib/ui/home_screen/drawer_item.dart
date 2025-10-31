@@ -34,14 +34,15 @@ class _DrawerItemState extends State<DrawerItem> {
           color: AppColors.whiteColor,
           height: height * 0.3,
           child: Center(
-            child: Text('News App', style: AppTextStyle.bold24Black),
+            child: Text(AppLocalizations.of(context)!.newsApp,
+                style: AppTextStyle.bold24Black),
           ),
         ),
         SizedBox(height: height * 0.02),
         GestureDetector(
           onTap: () => widget.onClickHome(),
           child: IconTextWidget(
-            text: 'Go to home',
+            text: AppLocalizations.of(context)!.goToHome,
             widget: Image.asset(AppAssets.homeIcon),
           ),
         ),
@@ -52,7 +53,8 @@ class _DrawerItemState extends State<DrawerItem> {
           indent: width * 0.032,
         ),
         SizedBox(height: height * 0.02),
-        IconTextWidget(text: 'Theme', widget: Image.asset(AppAssets.themeIcon)),
+        IconTextWidget(text: AppLocalizations.of(context)!.theme,
+            widget: Image.asset(AppAssets.themeIcon)),
         SizedBox(height: height * 0.02),
         CustomDropdown<ThemeMode>(
           key: ValueKey(AppLocalizations.of(context)!.localeName),
@@ -79,7 +81,7 @@ class _DrawerItemState extends State<DrawerItem> {
         ),
         SizedBox(height: height * 0.02),
         IconTextWidget(
-          text: 'Language',
+          text: AppLocalizations.of(context)!.language,
           widget: Image.asset(AppAssets.earthIcon),
         ),
         SizedBox(height: height * 0.02),
