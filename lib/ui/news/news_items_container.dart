@@ -12,10 +12,9 @@ class NewsItemsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    print(news.publishedAt);
     String getTimeAgo(String publishedAt) {
       DateTime utcTime = DateTime.parse(publishedAt);
-      DateTime egyptTime = utcTime.add(const Duration(hours: 2)); // UTC → Egypt
+      DateTime egyptTime = utcTime.add(const Duration(hours: 2));
 
       Duration diff = DateTime.now().difference(egyptTime);
 
@@ -28,7 +27,6 @@ class NewsItemsContainer extends StatelessWidget {
       } else if (diff.inDays == 1) {
         return "yesterday";
       } else {
-        // show date if older than 1 day
         return "${egyptTime.day}/${egyptTime.month}/${egyptTime.year}";
       }
     }
@@ -69,7 +67,6 @@ class NewsItemsContainer extends StatelessWidget {
               SizedBox(width: width * 0.02),
               Text(
 
-                /// a real minutes ago
                   getTimeAgo(news.publishedAt!),
                   style: AppTextStyle.normal12Grey),
             ],

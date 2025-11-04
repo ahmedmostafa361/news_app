@@ -57,8 +57,7 @@ class _SourceTabWidgetState extends State<SourceTabWidget> {
           ),
           Expanded(child: NewsWidget(source: widget.sourcesList[selectedIndex],
             category: widget.category,
-            searchQuery: widget.searchQuery,
-            language: widget.language,))
+            searchQuery: widget.searchQuery,))
         ],
       ),
     );

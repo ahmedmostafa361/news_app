@@ -13,11 +13,11 @@ class CategoryScreen extends StatelessWidget {
   final String searchQuery;
 
   final String language;
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: ApiManager.getSources(categoryId: categoryId.id),
+      /////**********************
       builder: (context, snapshot) {
         ///todo: waiting
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -34,12 +34,13 @@ class CategoryScreen extends StatelessWidget {
               Text('Something went wrong'),
               ElevatedButton(
                 onPressed: () {
-                  ApiManager.getSources(categoryId: categoryId.id);
+                  ApiManager.getSources(
+                      categoryId: categoryId.id); /////////////*****************
                 },
-                child: Text('try again', style: AppTextStyle.bold16Red),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.darkBlueColor,
                 ),
+                child: Text('try again', style: AppTextStyle.bold16Red),
               ),
             ],
           );
@@ -51,12 +52,13 @@ class CategoryScreen extends StatelessWidget {
               Text(snapshot.data!.message!),
               ElevatedButton(
                 onPressed: () {
-                  ApiManager.getSources(categoryId: categoryId.id);
+                  ApiManager.getSources(categoryId: categoryId
+                      .id); /////////////////****************
                 },
-                child: Text('try again', style: AppTextStyle.bold16Red),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.darkBlueColor,
                 ),
+                child: Text('try again', style: AppTextStyle.bold16Red),
               ),
             ],
           );
