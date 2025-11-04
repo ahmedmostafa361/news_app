@@ -15,13 +15,11 @@ class NewsWidget extends StatelessWidget {
     required this.source,
     required this.category,
     required this.searchQuery,
-    required this.language
   });
 
   final Categoory category;
   final Sources source;
   final String searchQuery;
-  final String language;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +29,7 @@ class NewsWidget extends StatelessWidget {
         .height;
 
     return FutureBuilder<NewsResponse>(
-      future: ApiManager.getNews(source.id!, searchQuery, language),
+      future: ApiManager.getNews(source.id!, searchQuery),
       builder: (context, snapshot) {
         ///todo: waiting
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -48,7 +46,8 @@ class NewsWidget extends StatelessWidget {
               Text('Something went wrong'),
               ElevatedButton(
                 onPressed: () {
-                  ApiManager.getSources(categoryId: category.id);
+                  ApiManager.getSources(
+                    categoryId: category.id,); ////////////////**************
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.darkBlueColor,
@@ -65,7 +64,8 @@ class NewsWidget extends StatelessWidget {
               Text(snapshot.data?.message ?? 'Error'),
               ElevatedButton(
                 onPressed: () {
-                  ApiManager.getSources(categoryId: category.id);
+                  ApiManager.getSources(
+                      categoryId: category.id); ///////////********
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.darkBlueColor,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_flutter/l10n/app_localizations.dart';
 import 'package:news_app_flutter/model/category.dart';
 import 'package:news_app_flutter/utlis/app_colors.dart';
 
@@ -43,21 +44,33 @@ class CategoryItem extends StatelessWidget {
               onPressed: () {},
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                textDirection: (index % 2 == 0)
-                    ? TextDirection.ltr
-                    : TextDirection.rtl,
                 children: [
                   Padding(
                     padding: EdgeInsetsDirectional.only(
-                      start: (index % 2 == 0) ? width * 0.022 : width * 0,
-                      end: (index % 2 == 1) ? width * 0.022 : width * 0,
+                      start: (index % 2 == 0) ? width * 0.022 : 0,
                     ),
-                    child: Text(
-                      'View All',
-                      style: Theme.of(context).textTheme.labelMedium,
+                    child: (index % 2 == 1) ? CircleAvatar(
+                      backgroundColor: Theme
+                          .of(context)
+                          .splashColor,
+                      child: Icon(
+                        (index % 2 == 0)
+                            ? Icons.arrow_forward_ios
+                            : Icons.arrow_back_ios,
+                        color: Theme
+                            .of(context)
+                            .cardColor,
+                      ),
+                    ) :
+                    Text(
+                      AppLocalizations.of(context)!.viewAll,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .labelMedium,
                     ),
                   ),
-                  CircleAvatar(
+                  (index % 2 == 0) ? CircleAvatar(
                     backgroundColor: Theme.of(context).splashColor,
                     child: Icon(
                       (index % 2 == 0)
@@ -65,7 +78,18 @@ class CategoryItem extends StatelessWidget {
                           : Icons.arrow_back_ios,
                       color: Theme.of(context).cardColor,
                     ),
-                  ),
+                  ) : Row(
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.viewAll,
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .labelMedium,
+                      ),
+                      SizedBox(width: width * 0.022,)
+                    ],
+                  )
                 ],
               ),
             ),

@@ -88,7 +88,7 @@ class CategoryFragment extends StatelessWidget {
                 return SizedBox(height: height * 0.02);
               },
               itemCount: categoryList.length,
-              cacheExtent: 1000,
+              cacheExtent: 2000,
             ),
           ),
         ],
