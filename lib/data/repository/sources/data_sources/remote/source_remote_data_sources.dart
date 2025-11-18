@@ -1,5 +1,6 @@
 import 'package:news_app_flutter/model/sourceResponse.dart';
 
-abstract class SourceRepository {
+/// interface => remote data sources
+abstract class SourceRemoteDataSources {
   Future<SourceResponse> getSources(String categoryId);
 }

@@ -55,7 +55,10 @@ class _SourceTabWidgetState extends State<SourceTabWidget> {
             //   );
             // }),
           ),
-          Expanded(child: NewsWidget(source: widget.sourcesList[selectedIndex],
+          Expanded(
+              child: NewsWidget(
+                key: UniqueKey(),
+                source: widget.sourcesList[selectedIndex],
             category: widget.category,
             searchQuery: widget.searchQuery,))
         ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app_flutter/api/api_manager.dart';
+import 'package:news_app_flutter/dependency_injection/di.dart';
 import 'package:news_app_flutter/model/category.dart';
 import 'package:news_app_flutter/ui/category_details/cubit/category_view_model.dart';
 import 'package:news_app_flutter/ui/category_details/cubit/news_category_states.dart';
@@ -9,7 +9,7 @@ import 'package:news_app_flutter/utlis/app_colors.dart';
 import 'package:news_app_flutter/utlis/app_text_style.dart';
 
 class CategoryScreen extends StatefulWidget {
-  CategoryScreen(
+  const CategoryScreen(
       {super.key, required this.categoryId, required this.searchQuery, required this.language});
 
   final Categoory categoryId;
@@ -21,7 +21,8 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-  CategoryViewModel viewModel = CategoryViewModel();
+  CategoryViewModel viewModel = CategoryViewModel(
+      sourceRepository: injectSourceRepository());
 
   @override
   void initState() {
@@ -47,9 +48,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 Text(state.errorMessage!),
                 ElevatedButton(
                   onPressed: () {
-                    ApiManager.getSources(
-                        categoryId: widget.categoryId
-                            .id); /////////////*****************
+                    viewModel.getSources(
+                        widget.categoryId.id); /////////////*****************
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.darkBlueColor,
