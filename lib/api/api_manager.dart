@@ -12,8 +12,6 @@ class ApiManager {
     Uri url = Uri.https(ApiConstants.serverName, ApiConstants.apiName, {
       'apiKey': ApiConstants.apiKey,
       'category': categoryId,
-
-
     });
     try {
       /// we use try and catch bec. if there is error he show it but app don't stop
