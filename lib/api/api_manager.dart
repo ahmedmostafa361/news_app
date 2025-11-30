@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:news_app_flutter/api/api_constants.dart';
 import 'package:news_app_flutter/model/newsResponse.dart';
 import 'package:news_app_flutter/model/sourceResponse.dart';
 
+@singleton
 class ApiManager {
   ///https://newsapi.org/v2/top-headlines/sources?apiKey=8ba0843ad1af49ae93ea0845d5e5da7c
   Future<SourceResponse> getSources({required String categoryId}) async {

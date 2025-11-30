@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:news_app_flutter/api/api_manager.dart';
 import 'package:news_app_flutter/data/repository/sources/data_sources/remote/source_remote_data_sources.dart';
 import 'package:news_app_flutter/model/sourceResponse.dart';
@@ -5,6 +6,7 @@ import 'package:news_app_flutter/model/sourceResponse.dart';
 /// todo: here we can use many data sources like hpp , dio , retrofit
 
 /// here we use hpp
+@Injectable(as: SourceRemoteDataSources)
 class SourceRemoteDataSourcesImpl implements SourceRemoteDataSources {
   ApiManager apiManager;
 

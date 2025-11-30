@@ -1,7 +1,9 @@
 import 'package:hive_flutter/adapters.dart';
+import 'package:injectable/injectable.dart';
 import 'package:news_app_flutter/data/repository/sources/data_sources/local/source_local_data_source.dart';
 import 'package:news_app_flutter/model/sourceResponse.dart';
 
+@Injectable(as: SourceLocalDataSource)
 class SourceLocalDataSourceImpl implements SourceLocalDataSource {
   @override
   Future<SourceResponse> getSources(String categoryId) async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app_flutter/dependency_injection/di.dart';
+import 'package:news_app_flutter/dependency_injection/di_injectable.dart';
 import 'package:news_app_flutter/model/category.dart';
 import 'package:news_app_flutter/ui/category_details/cubit/category_view_model.dart';
 import 'package:news_app_flutter/ui/category_details/cubit/news_category_states.dart';
@@ -21,8 +21,7 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-  CategoryViewModel viewModel = CategoryViewModel(
-      sourceRepository: injectSourceRepository());
+  CategoryViewModel viewModel = getIt<CategoryViewModel>();
 
   @override
   void initState() {
