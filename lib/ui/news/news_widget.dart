@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app_flutter/dependency_injection/di.dart';
+import 'package:news_app_flutter/dependency_injection/di_injectable.dart';
 import 'package:news_app_flutter/model/category.dart';
 import 'package:news_app_flutter/ui/news/cubit/news_states.dart';
 import 'package:news_app_flutter/ui/news/cubit/news_view_model.dart';
@@ -37,8 +37,7 @@ class _NewsWidgetState extends State<NewsWidget> {
     viewModel.getNews(widget.source.id!, widget.searchQuery);
   }
 
-  NewsViewModel viewModel = NewsViewModel(
-    newsRepository: injectNewsRepository(),);
+  NewsViewModel viewModel = getIt<NewsViewModel>();
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery
@@ -56,9 +55,9 @@ class _NewsWidgetState extends State<NewsWidget> {
               ),
             );
           } else if (state is ArticlesErrorStates) {
-            return Column(
+            return Column(mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(state.errorMessage, style: AppTextStyle.bold20White),
+                Text(state.errorMessage, style: AppTextStyle.bold16Red),
                 ElevatedButton(
                   onPressed: () {
                     viewModel.getNews(widget.source.id!, widget.searchQuery);

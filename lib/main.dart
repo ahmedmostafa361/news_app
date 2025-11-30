@@ -12,6 +12,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'api/bloc_opserver.dart';
+import 'dependency_injection/di_injectable.dart';
 import 'l10n/app_localizations.dart';
 
 void main() async {
@@ -19,6 +20,7 @@ void main() async {
   final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentsDir.path);
   Bloc.observer = MyBlocObserver();
+  configureDependencies();
   runApp(
     MultiProvider(
       providers: [
