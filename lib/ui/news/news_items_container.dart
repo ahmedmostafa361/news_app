@@ -23,7 +23,7 @@ class NewsItemsContainer extends StatelessWidget {
       } else if (diff.inMinutes < 60) {
         return "${diff.inMinutes} minutes ago";
       } else if (diff.inHours < 24) {
-        return "${diff.inHours} hour${diff.inHours > 1 ? 's' : ''} ago";
+        return "${diff.inHours - 21} hour${diff.inHours > 1 ? 's' : ''} ago";
       } else if (diff.inDays == 1) {
         return "yesterday";
       } else {
