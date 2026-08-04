@@ -1,5 +1,7 @@
 # 📰 News App — Flutter
 
+![News App Banner](screenshots/news.png)
+
 A modern, fully localized Flutter news application that delivers real-time news headlines across multiple categories, powered by the [NewsAPI](https://newsapi.org/). The app features a clean UI with full support for **Arabic and English**, **dark and light themes**, and **search functionality** — all managed elegantly with Provider.
 
 ---
@@ -21,11 +23,9 @@ A modern, fully localized Flutter news application that delivers real-time news 
 
 ## 📸 Screenshots
 
-> _Coming soon — add your screenshots here_
-
-| Home (Light) | Home (Dark) | Article View |
-|---|---|---|
-| ![light](screenshots/home_light.png) | ![dark](screenshots/home_dark.png) | ![article](screenshots/article.png) |
+| Categories (Dark Mode) | News Feed | Navigation Drawer |
+| :---: | :---: | :---: |
+| <img src="screenshots/news1.png" width="250" alt="Categories Screen in Dark Mode" /> | <img src="screenshots/news2.png" width="250" alt="News Feed Screen" /> | <img src="screenshots/news3.png" width="250" alt="Flutter Drawer Screen" /> |
 
 ---
 
@@ -33,7 +33,9 @@ A modern, fully localized Flutter news application that delivers real-time news 
 
 The app follows a clean, scalable structure separating concerns across layers:
 
+
 ```
+
 lib/
 ├── api/
 │   ├── api_manager.dart        # HTTP requests via NewsAPI
@@ -51,9 +53,10 @@ lib/
 │   └── category_details/       # Source tabs + news list
 ├── l10n/                       # ARB localization files
 └── utils/
-    ├── app_colors.dart
-    ├── app_assets.dart
-    └── app_text_style.dart
+├── app_colors.dart
+├── app_assets.dart
+└── app_text_style.dart
+
 ```
 
 ---
@@ -87,7 +90,7 @@ lib/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/ahmedmostafa361/news-app-flutter.git
+git clone [https://github.com/ahmedmostafa361/news-app-flutter.git](https://github.com/ahmedmostafa361/news-app-flutter.git)
 cd news-app-flutter
 
 # 2. Install dependencies
@@ -99,6 +102,7 @@ static const String apiKey = 'YOUR_API_KEY_HERE';
 
 # 4. Run the app
 flutter run
+
 ```
 
 ---
@@ -108,7 +112,7 @@ flutter run
 This app uses [NewsAPI.org](https://newsapi.org/) with two endpoints:
 
 | Endpoint | Purpose |
-|---|---|
+| --- | --- |
 | `/v2/top-headlines/sources` | Fetch news sources filtered by category |
 | `/v2/everything` | Fetch articles filtered by source and optional search query |
 
@@ -143,6 +147,7 @@ dependencies:
   intl: any
   flutter_localizations:
     sdk: flutter
+
 ```
 
 ---
@@ -152,12 +157,12 @@ dependencies:
 **Ahmed Mostafa Megahed**
 Flutter Developer | Computer & Software Engineering Student
 
-[![GitHub](https://img.shields.io/badge/GitHub-ahmedmostafa361-181717?style=flat&logo=github)](https://github.com/ahmedmostafa361)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-ahmed--mostafa-0A66C2?style=flat&logo=linkedin)](https://linkedin.com/in/ahmed-mostafa-041690375)
-[![YouTube](https://img.shields.io/badge/YouTube-Fixha%20%7C%20حلها-FF0000?style=flat&logo=youtube)](https://youtube.com/@fixha)
-
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License — see the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
+
+```
+
+```
